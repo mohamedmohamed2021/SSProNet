@@ -277,7 +277,7 @@ class SSProNet(nn.Module):
         self.level = level
         self.act = swish
 
-        # geometric edge feature builders (same as ProNet)
+        # geometric edge feature builders (same as ProNet: https://openreview.net/forum?id=9X-hgLDLYkQ )
         self.feature0 = d_theta_phi_emb(num_radial=num_radial, num_spherical=num_spherical, cutoff=cutoff)
         self.feature1 = d_angle_emb(num_radial=num_radial, num_spherical=num_spherical, cutoff=cutoff)
 
@@ -301,7 +301,7 @@ class SSProNet(nn.Module):
         else:
             raise ValueError(f"Unsupported level: {level}")
 
-        # interaction blocks (unchanged signature for now; you will extend later)
+        # interaction blocks 
         self.interaction_blocks = nn.ModuleList([
             InteractionBlock(
                 hidden_channels=hidden_channels,
