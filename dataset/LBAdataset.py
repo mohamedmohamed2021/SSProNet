@@ -38,7 +38,7 @@ def _dihedral(v1, v2, v3):
     return torch.atan2(b, a)
 
 def _bb_embs_from_N_CA_C(pos_n, pos_ca, pos_c):
-    # 6D: cos/sin of (phi, psi, omega) per residue (same design as your EC/FOLD). :contentReference[oaicite:5]{index=5}
+    # 6D: cos/sin of (phi, psi, omega) per residue (same design as your EC/FOLD). 
     X = torch.stack([pos_n, pos_ca, pos_c], dim=1).reshape(-1, 3)
     dX = X[1:] - X[:-1]
     U = _normalize(dX)
@@ -53,7 +53,7 @@ def _pick(df: pd.DataFrame, choices: List[str]):
     return None
 
 def _parse_dssp(dssp_path: str, n_res: int):
-    # Minimal DSSP parser aligned with your EC/FOLD mapping (H/E/T/S/G/B/I→0..6; else C→7). :contentReference[oaicite:6]{index=6}
+    # Minimal DSSP parser aligned with your EC/FOLD mapping (H/E/T/S/G/B/I→0..6; else C→7). 
     ss_map = {'H':0,'E':1,'T':2,'S':3,'G':4,'B':5,'I':6}
     ss = torch.full((n_res,), 7, dtype=torch.long)   # default coil
     acc = torch.zeros((n_res,), dtype=torch.float)
@@ -181,7 +181,7 @@ class LBADataset_SSProNet(InMemoryDataset):
         bb = _bb_embs_from_N_CA_C(pos_n, pos_ca, pos_c)
         bb[torch.isnan(bb)] = 0
 
-        # side-chain embeddings: 8-dim placeholder (your EC/FOLD code uses 8; safe to start with zeros) :contentReference[oaicite:7]{index=7}
+        # side-chain embeddings: 8-dim placeholder (your EC/FOLD code uses 8; safe to start with zeros) 
         side_chain = torch.zeros((aa_idx.shape[0], 8), dtype=torch.float32)
 
         # DSSP / H-bonds (optional)
@@ -205,7 +205,7 @@ class LBADataset_SSProNet(InMemoryDataset):
             coords_ca=pos_ca, coords_n=pos_n, coords_c=pos_c,
             bb_embs=bb, side_chain_embs=side_chain,
             ss=ss, acc=acc,
-            hbonds=hbonds,       # SSProNet can consume this (optional) :contentReference[oaicite:8]{index=8}
+            hbonds=hbonds,       # SSProNet can consume this (optional)
             label=label,
         )
         data.id = base_id
