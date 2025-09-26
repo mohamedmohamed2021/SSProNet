@@ -1,7 +1,3 @@
-# Code to run xperiments on Fold and EC datasets in our paper 
-# "Learning Hierarchical Protein Representations via Complete 3D Graph Networks" 
-# (https://openreview.net/forum?id=9X-hgLDLYkQ)
-
 ##################################### Default hyperparameters for ECdataset #####################################
 # device=0
 # dataset='func'
@@ -33,7 +29,7 @@
 # --num_workers $num_workers \
 # --mask --noise --deform --euler_noise --data_augment_eachlayer
 
-##################################### Default hyperparameters for ECdataset #####################################
+##################################### Default hyperparameters for FOLDdataset #####################################
 # device=0
 # dataset='fold'
 # dataset_path='dataset/' # make sure that the folder 'HomologyTAPE' is under this path
@@ -82,22 +78,7 @@ import sys
 sys.path.insert(0,'..')
 sys.path.insert(0,'../..')
 
-# Old method
-# from method.pronet import ProNet 
 
-# New CompleteCD_Conv method
-#from method.Complete_CD_Conv import ProNet
-
-# new method: SeqRadNet
-#from method.SeqRadNet_Nature import SeqRadNet
-
-# new method: SeqRadNet_ProNet
-#from method.SeqRadNet_ProNet import SeqRadNet
-
-# new method: SeqRadNet_CoupleNet
-#from method.SeqRadNet_CoupleNet import SeqRadNet
-
-#new method:SSProNet
 from method.SSProNet_new_ec import SSProNet
 from dataset.FOLDdataset import FOLDdataset
 from dataset.ECdataset import ECdataset
@@ -238,9 +219,6 @@ def eval_buckets_and_pick_best(args, model, loaders, device, ct_lst):
     
 def main():
     
-    """# Set global seed
-    seed = 42  # or any integer you like
-    set_seed(seed)"""
 
 
     ### Args
@@ -285,7 +263,7 @@ def main():
     parser.add_argument('--disable_tqdm', default=False, action='store_true')
 
     parser.add_argument('--use_schull_buckets', action='store_true',
-                    help='Evaluate test splits per size bucket and report best cutoff (SCHull)')
+                    help='Evaluate test splits per size bucket and report best cutoff (SCHull: https://openreview.net/forum?id=OIvg3MqWX2&noteId=UlvPDZvECD)')
     parser.add_argument('--ct_lst', type=str, default="50,100,150,200,250,300,400,500,2000",
                     help='Comma-separated upper bounds for residue-count buckets')
     parser.add_argument("--size_mode", type=str, default="residues",
