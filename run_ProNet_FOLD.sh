@@ -4,7 +4,7 @@ set -euo pipefail
 # -----------------------------
 # Hardware
 # -----------------------------
-DEVICE=0               # GPU id passed to the script (your code handles --device)
+DEVICE=0               # GPU id passed to the script 
 
 # -----------------------------
 # Dataset
@@ -39,7 +39,7 @@ NUM_WORKERS=5
 # SCHull evaluation controls
 # -----------------------------
 USE_SCHULL=1                      # 1 = evaluate per size-bucket & report best, 0 = classic whole-split
-CT_LIST="50,100,150,200,250,300,400,500,2000"  # bucket upper bounds (edit as you like)
+CT_LIST="50,100,150,200,250,300,400,500,2000"  # bucket upper bounds (like in the supplementary materials given in: https://openreview.net/forum?id=OIvg3MqWX2&noteId=UlvPDZvECD)
 SIZE_MODE="residues"              # 'residues' | 'graph_nodes' | 'ca_atoms' (dataset decides)
 
 # -----------------------------
