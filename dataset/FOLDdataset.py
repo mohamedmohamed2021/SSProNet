@@ -118,7 +118,7 @@ class FOLDdataset(InMemoryDataset):
         # Just ensure we use the *effective* split with the cutoff suffix.
         return [f'{self.split}.pt']
 
-    #---------- SCHull like processing HELPERS: Start----------
+    #---------- SCHull like processing HELPERS (see supplementary materials provided in https://openreview.net/forum?id=OIvg3MqWX2&noteId=UlvPDZvECD ) : Start----------
     def _num_residues_h5(self, h5_path: str) -> int:
         """
         Fast path: use residue array length (e.g., 'amino_types') from your HDF5.
